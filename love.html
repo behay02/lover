@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love you babe 💕</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            position: relative;
+            
+            /* --- КРАСИВЫЙ ФОН ПОД ФОТО (чтобы не было пустых мест) --- */
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(255, 200, 220, 0.8), transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 160, 190, 0.8), transparent 50%),
+                linear-gradient(135deg, #ffe4ec, #ffb6c1);
+            
+            /* --- ФОТО i.png ЦЕЛИКОМ --- */
+            background-image: url('i.png');
+            background-size: contain;      /* Фото не растягивается и не обрезается */
+            background-position: center;   /* По центру */
+            background-repeat: no-repeat;  /* Без повторов */
+        }
+
+        /* Легкая розовая вуаль поверх фото для читаемости */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(255, 182, 193, 0.35);
+            backdrop-filter: blur(1px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* --- КАРТИНКИ ПО КРУГУ --- */
+        .meme {
+            position: absolute;
+            width: 180px; 
+            height: 180px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            animation: float 3s ease-in-out infinite;
+            z-index: 10;
+            transform: translate(-50%, -50%); 
+            border: 4px solid white;
+        }
+
+        .transparent-bg {
+            mix-blend-mode: multiply;
+            border: none;
+            box-shadow: none;
+        }
+
+        /* Позиции (радиус 280px) */
+        .pos-1 { top: calc(50% - 280px); left: 50%; animation-delay: 0s; }
+        .pos-2 { top: calc(50% - 198px); left: calc(50% + 198px); animation-delay: 0.2s; }
+        .pos-3 { top: 50%; left: calc(50% + 280px); animation-delay: 0.4s; }
+        .pos-4 { top: calc(50% + 198px); left: calc(50% + 198px); animation-delay: 0.6s; }
+        .pos-5 { top: calc(50% + 280px); left: 50%; animation-delay: 0.8s; }
+        .pos-6 { top: calc(50% + 198px); left: calc(50% - 198px); animation-delay: 1.0s; }
+        .pos-7 { top: 50%; left: calc(50% - 280px); animation-delay: 1.2s; }
+        .pos-8 { top: calc(50% - 198px); left: calc(50% - 198px); animation-delay: 1.4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, -50%) scale(1) rotate(-5deg); }
+            50%      { transform: translate(-50%, -50%) scale(1.1) rotate(5deg); }
+        }
+
+        /* --- ЦЕНТРАЛЬНОЕ СЕРДЦЕ --- */
+        .heart-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            animation: pulse 1.5s infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+        }
+
+        .heart {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-color: #ff3366;
+            transform: rotate(-45deg);
+            box-shadow: 0 0 60px rgba(255, 51, 102, 0.9);
+        }
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-color: #ff3366;
+            border-radius: 50%;
+        }
+        .heart::before { top: -75px; left: 0; }
+        .heart::after  { top: 0; left: 75px; }
+
+        @keyframes pulse {
+            0%   { transform: translate(-50%, -50%) scale(1); }
+            50%  { transform: translate(-50%, -50%) scale(1.08); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        /* --- ТЕКСТ --- */
+        .text {
+            position: absolute;
+            z-index: 21;
+            color: white;
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 1.2;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+            transform: rotate(-5deg);
+            pointer-events: none;
+        }
+        .text span {
+            display: block;
+            font-size: 38px;
+            color: #ffe4ec;
+        }
+
+        /* --- ЛЕТЯЩИЕ СЕРДЕЧКИ --- */
+        .bg-heart {
+            position: absolute;
+            color: #ff4d6d;
+            font-size: 24px;
+            opacity: 0.8;
+            animation: floatUp linear infinite;
+            z-index: 5;
+        }
+        @keyframes floatUp {
+            0%   { transform: translateY(0) scale(1) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(-700px) scale(1.5) rotate(360deg); opacity: 0; }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 900px) {
+            .meme { width: 100px; height: 100px; border-width: 2px; }
+            
+            .pos-1 { top: calc(50% - 180px); }
+            .pos-2 { top: calc(50% - 127px); left: calc(50% + 127px); }
+            .pos-3 { left: calc(50% + 180px); }
+            .pos-4 { top: calc(50% + 127px); left: calc(50% + 127px); }
+            .pos-5 { top: calc(50% + 180px); }
+            .pos-6 { top: calc(50% + 127px); left: calc(50% - 127px); }
+            .pos-7 { left: calc(50% - 180px); }
+            .pos-8 { top: calc(50% - 127px); left: calc(50% - 127px); }
+            
+            .heart-container { width: 200px; height: 200px; }
+            .heart { width: 100px; height: 100px; }
+            .heart::before, .heart::after { width: 100px; height: 100px; }
+            .heart::before { top: -50px; }
+            .heart::after  { left: 50px; }
+            .text { font-size: 20px; }
+            .text span { font-size: 28px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 7 Картинок по кругу (i.png теперь фон) -->
+    <img src="cat.png"      alt="cat"      class="meme pos-1 transparent-bg">
+    <img src="dance.png"    alt="dance"    class="meme pos-2 transparent-bg">
+    <img src="kiss.png"     alt="kiss"     class="meme pos-3 transparent-bg">
+    <img src="lip.png"      alt="lip"      class="meme pos-4">
+    
+    <img src="dog.png"      alt="dog"      class="meme pos-5">
+    <img src="love.png"     alt="love"     class="meme pos-6 transparent-bg">
+    <img src="lovedog.png"  alt="lovedog"  class="meme pos-7">
+
+    <!-- Центр -->
+    <div class="heart-container">
+        <div class="heart"></div>
+        <div class="text">
+            love you
+            <span>babe</span>
+        </div>
+    </div>
+
+    <!-- Скрипт для летящих сердечек -->
+    <script>
+        const symbols = ['❤', '💖', '💕', '💗', '💓', '💘'];
+        function createHeart() {
+            const h = document.createElement('div');
+            h.classList.add('bg-heart');
+            h.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+            h.style.left = Math.random() * 100 + 'vw';
+            h.style.bottom = '-50px';
+            h.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            h.style.fontSize = (Math.random() * 25 + 15) + 'px';
+            document.body.appendChild(h);
+            setTimeout(() => h.remove(), 6000);
+        }
+        setInterval(createHeart, 200);
+    </script>
+</body>
+</html>
